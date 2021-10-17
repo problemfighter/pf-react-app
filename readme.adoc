@@ -1,0 +1,15 @@
+= Problem Fighter React Application Framework (pf-react-app)
+
+
+{blank} +
+
+== How to start Project as Development Mode?
+
+. Make sure you have node installed. https://nodejs.org/en/  (LTS is recommanded)
+. Make sure you have Git installed in your pc https://git-scm.com/downloads
+. Please go to the location where you want to store the project. Open terminal or Git Bash
+. Run this command from your terminal or git bash : `` curl https://raw.githubusercontent.com/problemfighter/pf-react-app/master/dev-bismillah.sh -o dev-bismillah.sh && bash dev-bismillah.sh``
+. If you not get error in your console then please go to the directory named **pf-react-app**. ``cd pf-react-app``
+. Run the below command `yarn start-pra`
+. Browse the url : http://localhost:1234/
+

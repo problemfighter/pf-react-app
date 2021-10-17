@@ -1,0 +1,23 @@
+{
+  "name": "pf-react-app",
+  "version": "1.0.0",
+  "description": "Problem Fighter React Application",
+  "main": "index.jsx",
+  "repository": "https://github.com/problemfighter/pf-react-app",
+  "author": "Touhid Mia <hmtm.cse@gmail.com>",
+  "license": "Apache License 2.0",
+  "private": true,
+  "workspaces": [
+    "dev-libs/*",
+    "application/*/ui"
+  ],
+  "scripts": {
+    "start-pra": "lerna run start-rma --stream",
+    "build-pra": "lerna run build-rma --stream",
+    "start-my-app": "lerna run start-my-app --stream",
+    "build-my-app": "lerna run build-my-app --stream"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "packages": [
+    "dev-libs/*",
+    "application/*/ui"
+  ],
+  "version": "1.0.0"
+}
