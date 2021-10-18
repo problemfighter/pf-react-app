@@ -1,5 +1,6 @@
 {
   "packages": [
+    "frame-mod/*",
     "dev-libs/*",
     "application/*/ui"
   ],

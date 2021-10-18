@@ -8,12 +8,13 @@
   "license": "Apache License 2.0",
   "private": true,
   "workspaces": [
+    "frame-mod/*",
     "dev-libs/*",
     "application/*/ui"
   ],
   "scripts": {
-    "start-pra": "lerna run start-rma --stream",
-    "build-pra": "lerna run build-rma --stream",
+    "start-pra": "lerna run start-pra --stream",
+    "build-pra": "lerna run build-pra --stream",
     "start-my-app": "lerna run start-my-app --stream",
     "build-my-app": "lerna run build-my-app --stream"
   },
