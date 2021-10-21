@@ -1,0 +1,63 @@
+import React from 'react';
+import {PFProps} from "@pfo/pf-react/src/artifacts/interface/pf-mixed-interface";
+import PFComponentState from "@pfo/pf-react/src/artifacts/component/pf-component-state";
+import PFComponent from "@pfo/pf-react/src/artifacts/component/pf-component";
+import loginLogo from './../../assets/img/logo/login-logo.jpg'
+import './../../assets/css/login.css'
+import Card from "@pfo/pf-rui/bootstrap/card/Card";
+import Container from "@pfo/pf-rui/bootstrap/Container";
+import CardContent from "@pfo/pf-rui/bootstrap/card/CardContent";
+import TextField from "../../../../../dev-libs/pf-rui/bootstrap/TextField";
+
+interface Props extends PFProps {
+    route: any;
+}
+
+class State extends PFComponentState {
+
+}
+
+export default class LoginView extends PFComponent<Props, State> {
+
+    state: State = new State();
+
+    constructor(props: Props) {
+        super(props);
+    }
+
+    componentDidMount() {
+    }
+
+    componentDidUpdate(prevProps: Props) {
+    }
+
+    renderUI() {
+        return (
+            <React.Fragment>
+                <main className="login-view-wrapper">
+                    <div className="h-100 d-flex align-items-center justify-content-center">
+                        <Container className="form-window-middle d-flex align-items-center justify-content-center">
+                            <Card>
+                                <CardContent>
+                                    <div className="company-logo p-2">
+                                        <img src={loginLogo} className="rounded-circle mx-auto d-block" width="132" height="132"/>
+                                    </div>
+                                    <div className="text-center mb-3">
+                                        <h3>Problem Fighter</h3>
+                                    </div>
+                                    <div className="login-form">
+                                        <form className={"row"} noValidate={true}>
+                                            <TextField name="email" label="Email" type={"email"} required={true} placeholder={"Enter your email"}/>
+                                        </form>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </Container>
+
+                    </div>
+                </main>
+            </React.Fragment>
+        )
+    }
+
+}

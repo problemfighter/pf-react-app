@@ -1,0 +1,21 @@
+.login-view-wrapper {
+    background-color: rgba(47, 128, 237, 0.1);
+}
+
+.company-logo img {
+    border: 1px solid #ced4da;
+}
+
+.form-window-middle {
+    width: 100%;
+    max-width: 575px;
+    height: 100vh;
+    margin: auto;
+}
+
+.login-form {
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 100%;
+}
+

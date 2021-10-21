@@ -15,10 +15,7 @@ export default class URLMapping extends PFURLMapping {
         let publicLayoutInfo: PFLayoutInfoData = new PFLayoutInfoData();
         publicLayoutInfo.layout = PublicLayout
 
-        publicLayoutInfo.addPageInstance("/", EmptyView);
-        pageWithLayout.push(publicLayoutInfo);
-
-        FMUrlMappingHolder.getMappings(publicLayoutInfo, publicLayoutInfo);
+        pageWithLayout = FMUrlMappingHolder.getMappings(publicLayoutInfo, publicLayoutInfo, pageWithLayout);
 
         return pageWithLayout
     }
