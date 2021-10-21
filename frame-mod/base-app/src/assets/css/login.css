@@ -19,3 +19,19 @@
     width: 100%;
 }
 
+.forgot a {
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: -5px;
+    color: #5d657b;
+    text-decoration: none;
+}
+
+.forgot a:hover {
+    text-decoration: underline;
+}
+
+.remember-me {
+    margin-left: 10px;
+}
+

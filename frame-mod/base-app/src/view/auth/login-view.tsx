@@ -8,6 +8,9 @@ import Card from "@pfo/pf-rui/bootstrap/card/Card";
 import Container from "@pfo/pf-rui/bootstrap/Container";
 import CardContent from "@pfo/pf-rui/bootstrap/card/CardContent";
 import TextField from "../../../../../dev-libs/pf-rui/bootstrap/TextField";
+import Row from "@pfo/pf-rui/bootstrap/Row";
+import Column from "@pfo/pf-rui/bootstrap/Column";
+import Button from "../../../../../dev-libs/pf-rui/bootstrap/Button";
 
 interface Props extends PFProps {
     route: any;
@@ -47,7 +50,16 @@ export default class LoginView extends PFComponent<Props, State> {
                                     </div>
                                     <div className="login-form">
                                         <form className={"row"} noValidate={true}>
-                                            <TextField name="email" label="Email" type={"email"} required={true} placeholder={"Enter your email"}/>
+                                            <TextField wrapperClass={"mb-4"} name="email" label="Email" type={"email"} required={true} placeholder={"Enter your email"}/>
+                                            <TextField wrapperClass={"mb-0"} name="password" label="Password" type={"password"} required={true} placeholder={"Enter your password"}/>
+                                            <p className=" forgot mt-0"><a href="#">Forgot password?</a></p>
+                                            <TextField type={"checkbox"} name={"rememberMe"} label={"Remember me"} addWrapperClass={"remember-me"}/>
+
+                                            <Row>
+                                                <Column span={6} className={"text-center d-grid mx-auto mb-3"}>
+                                                    <Button variant={"secondary"}>Login</Button>
+                                                </Column>
+                                            </Row>
                                         </form>
                                     </div>
                                 </CardContent>
