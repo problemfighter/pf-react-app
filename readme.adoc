@@ -13,3 +13,12 @@
 . Run the below command `yarn start-pra`
 . Browse the url : http://localhost:1234/
 
+
+
+{blank} +
+
+== Kill node process at windows
+```bash
+Taskkill /F /IM node.exe
+```
+
