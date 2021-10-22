@@ -12,7 +12,7 @@ class State extends PFComponentState {
 
 }
 
-export default class LeftSidebarView extends PFReactComponent<Props, State> {
+export default class LeftSidebarSnippet extends PFReactComponent<Props, State> {
 
     state: State = new State();
 
