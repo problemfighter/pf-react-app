@@ -34,6 +34,16 @@ export default class LoginView extends PFComponent<Props, State> {
     componentDidUpdate(prevProps: Props) {
     }
 
+    formSubmit(event: any) {
+        event.preventDefault();
+        const _this = this;
+        const data = new FormData(event.currentTarget);
+        console.log(data)
+        console.log(event.target.elements)
+        console.log(event.target[0].name)
+        console.log(event.target[1].value)
+    }
+
     renderUI() {
         return (
             <React.Fragment>
@@ -49,15 +59,14 @@ export default class LoginView extends PFComponent<Props, State> {
                                         <h3>Problem Fighter</h3>
                                     </div>
                                     <div className="login-form">
-                                        <form className={"row"} noValidate={true}>
+                                        <form method={"post"} className={"row"} noValidate={true} onSubmit={(event:any) => {this.formSubmit(event)}}>
                                             <TextField wrapperClass={"mb-4"} name="email" label="Email" type={"email"} required={true} placeholder={"Enter your email"}/>
                                             <TextField wrapperClass={"mb-0"} name="password" label="Password" type={"password"} required={true} placeholder={"Enter your password"}/>
                                             <p className=" forgot mt-0"><a href="#">Forgot password?</a></p>
                                             <TextField type={"checkbox"} name={"rememberMe"} label={"Remember me"} addWrapperClass={"remember-me"}/>
-
                                             <Row>
                                                 <Column span={6} className={"text-center d-grid mx-auto mb-3"}>
-                                                    <Button variant={"secondary"}>Login</Button>
+                                                    <Button type={"submit"} variant={"secondary"}>Login</Button>
                                                 </Column>
                                             </Row>
                                         </form>
@@ -65,7 +74,6 @@ export default class LoginView extends PFComponent<Props, State> {
                                 </CardContent>
                             </Card>
                         </Container>
-
                     </div>
                 </main>
             </React.Fragment>
