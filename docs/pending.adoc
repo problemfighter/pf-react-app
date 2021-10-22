@@ -5,3 +5,8 @@
 * Profile Dropdown
 * Left Navigation
 * Logo
+* Navigation Switching
+* Authentication checking
+* Dynamic Menu Rendering
+* Text Area
+* Search able Dropdown

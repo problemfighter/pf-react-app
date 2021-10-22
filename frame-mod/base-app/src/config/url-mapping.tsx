@@ -7,6 +7,8 @@ import PrivateLayout from "../view/layouts/private-layout";
 
 
 const DashboardView = React.lazy(() => import('../view/base-app/dashboard-view'));
+const CreateView = React.lazy(() => import('../view/base-app/create-view'));
+const TableView = React.lazy(() => import('../view/base-app/table-view'));
 
 export default class URLMapping extends PFURLMapping {
 
@@ -17,6 +19,12 @@ export default class URLMapping extends PFURLMapping {
         privateLayoutInfo.layout = PrivateLayout
 
         privateLayoutInfo.addPageInstance("/dashboard", DashboardView);
+        pageWithLayout.push(privateLayoutInfo);
+
+        privateLayoutInfo.addPageInstance("/create", CreateView);
+        pageWithLayout.push(privateLayoutInfo);
+
+        privateLayoutInfo.addPageInstance("/table", TableView);
         pageWithLayout.push(privateLayoutInfo);
 
         let publicLayoutInfo: PFLayoutInfoData = new PFLayoutInfoData();
