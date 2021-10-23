@@ -44,7 +44,7 @@ export default class TopBarSnippet extends PFReactComponent<Props, State> {
 
     private profileSection() {
         return (
-            <div className="profile-box customized-dropdown">
+            <div className="profile-box">
                 <button className="dropdown-toggle bg-transparent border-0" type="button" data-bs-toggle="dropdown">
                     <div className="profile-info">
                         <div className="info">
@@ -78,8 +78,8 @@ export default class TopBarSnippet extends PFReactComponent<Props, State> {
 
     private quickActionMenu() {
         return (
-            <div className="customized-dropdown ml-15 d-none d-md-flex">
-                <button className="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <div className="profile-box ml-15 d-none d-md-flex">
+                <button className="dropdown-toggle w-46" type="button" data-bs-toggle="dropdown">
                     <i className="bi bi-plus-circle"></i>
                 </button>
                 <ul className="dropdown-menu dropdown-menu-end">
