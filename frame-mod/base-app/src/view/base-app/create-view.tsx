@@ -5,9 +5,9 @@ import PFComponent from "@pfo/pf-react/src/artifacts/component/pf-component";
 import Card from "@pfo/pf-rui/bootstrap/card/Card";
 import CardContent from "@pfo/pf-rui/bootstrap/card/CardContent";
 import TextField from "../../../../../dev-libs/pf-rui/bootstrap/TextField";
-import Row from "../../../../../dev-libs/pf-rui/bootstrap/Row";
-import Column from "../../../../../dev-libs/pf-rui/bootstrap/Column";
-import Button from "../../../../../dev-libs/pf-rui/bootstrap/Button";
+import Row from "@pfo/pf-rui/bootstrap/Row";
+import Column from "@pfo/pf-rui/bootstrap/Column";
+import Button from "@pfo/pf-rui/bootstrap/Button";
 
 
 interface Props extends PFProps {
@@ -35,8 +35,8 @@ export default class CreateView extends PFComponent<Props, State> {
     renderUI() {
         return (
             <React.Fragment>
-                <div className="pt-3 pb-3 mb-3 border-bottom">
-                    <h3>Create</h3>
+                <div className="pt-3 pb-2 mb-2 border-bottom">
+                    <h4>Create</h4>
                 </div>
                 <Card>
                     <CardContent>

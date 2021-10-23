@@ -266,17 +266,6 @@
     margin-left: 0;
 }
 
-.main-wrapper .container-fluid {
-    padding-left: 40px;
-    padding-right: 40px;
-}
-
-@media (max-width: 767px) {
-    .main-wrapper .container-fluid {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-}
 
 .main-wrapper .footer {
     padding: 25px 0;
@@ -532,3 +521,12 @@
     border-radius: 50%;
 }
 /* Start Header Right Section */
+
+
+/* Start Table View Section */
+.action-panel .additional-action {
+    width: 23%;
+    margin-left: 3px;
+}
+/* Start Table View Section */
+
