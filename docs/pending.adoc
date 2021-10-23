@@ -1,6 +1,7 @@
 
 
 * Flash Message
+* Search able Dropdown
 * Form Submission
 * Profile Dropdown
 * Left Navigation
@@ -9,4 +10,3 @@
 * Authentication checking
 * Dynamic Menu Rendering
 * Text Area
-* Search able Dropdown
