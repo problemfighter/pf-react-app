@@ -9,6 +9,7 @@ import Column from "@pfo/pf-rui/bootstrap/Column";
 import Button from "@pfo/pf-rui/bootstrap/Button";
 import Toast from "@pfo/pf-rui/bootstrap/Toast";
 import TextField from "@pfo/pf-rui/bootstrap/TextField";
+import LoadingIndicator from "@pfo/pf-rui/bootstrap/LoadingIndicator";
 
 
 interface Props extends PFProps {
@@ -41,6 +42,7 @@ export default class CreateView extends PFComponent<Props, State> {
                 </div>
                 <Card>
                     <Toast messageType={"success"} message={"Bismillah Message"} />
+                    <LoadingIndicator/>
                     <CardContent>
                         <form >
                             <Row>

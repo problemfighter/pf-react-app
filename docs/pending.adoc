@@ -1,6 +1,7 @@
 
 
-* Flash Message
+* Flash Message (Done)
+* Progress bar
 * Search able Dropdown
 * Form Submission
 * Profile Dropdown
