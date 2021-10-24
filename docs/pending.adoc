@@ -1,7 +1,3 @@
-
-
-
-* Search able Dropdown
 * Form Submission
 * Profile Dropdown
 * Left Navigation
@@ -12,8 +8,11 @@
 * Text Area
 * Modal
 
+
+
 {blank} +
 
 == Done Task
 * Flash Message (Done)
 * Progress bar
+* Search able Dropdown
