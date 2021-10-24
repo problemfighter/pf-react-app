@@ -1,7 +1,6 @@
 
 
-* Flash Message (Done)
-* Progress bar
+
 * Search able Dropdown
 * Form Submission
 * Profile Dropdown
@@ -11,3 +10,10 @@
 * Authentication checking
 * Dynamic Menu Rendering
 * Text Area
+* Modal
+
+{blank} +
+
+== Done Task
+* Flash Message (Done)
+* Progress bar
