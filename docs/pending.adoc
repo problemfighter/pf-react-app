@@ -5,7 +5,6 @@
 * Navigation Switching
 * Authentication checking
 * Dynamic Menu Rendering
-* Text Area
 * Modal
 
 
@@ -14,5 +13,6 @@
 
 == Done Task
 * Flash Message (Done)
-* Progress bar
-* Search able Dropdown
+* Progress bar (Done)
+* Search able Dropdown (Done)
+* Text Area (Done)
