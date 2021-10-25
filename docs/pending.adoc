@@ -5,7 +5,8 @@
 * Navigation Switching
 * Authentication checking
 * Dynamic Menu Rendering
-* Modal
+* Pagination
+* Table Header Sorting
 
 
 
@@ -16,3 +17,4 @@
 * Progress bar (Done)
 * Search able Dropdown (Done)
 * Text Area (Done)
+* Dialog (Done)
