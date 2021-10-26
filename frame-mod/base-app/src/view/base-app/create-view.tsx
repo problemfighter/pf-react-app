@@ -20,9 +20,17 @@ class State extends PFComponentState {
 
 }
 
+
+interface ExampleArguments {
+    scope?: boolean;
+    location?: string;
+    project?: number;
+}
+
 export default class CreateView extends PFComponent<Props, State> {
 
     state: State = new State();
+    attributes: { [key: string]: any } = {};
 
     constructor(props: Props) {
         super(props);
@@ -33,6 +41,15 @@ export default class CreateView extends PFComponent<Props, State> {
 
     componentDidUpdate(prevProps: Props) {
     }
+
+    field(exampleArguments: ExampleArguments) {
+        return exampleArguments
+    }
+
+    // fieldDefinition() {
+    //     console.log("Create View")
+    // }
+
 
     renderUI() {
         return (
@@ -46,7 +63,7 @@ export default class CreateView extends PFComponent<Props, State> {
                     <CardContent>
                         <form >
                             <Row>
-                                <TextField name={"firstName"} label={"First Name"} required={true} addWrapperClass={"col-6"}/>
+                                <TextField name={this.attributes.name} label={"First Name"} required={true} addWrapperClass={"col-6"}/>
                                 <TextField name={"lastName"} label={"Last Name"} addWrapperClass={"col-6"}/>
                                 <TextField name={"email"} label={"Email"} type={"email"} required={true} addWrapperClass={"col-6"}/>
                                 <TextField name={"password"} label={"Password"} type={"password"} required={true} addWrapperClass={"col-6"}/>
