@@ -52,7 +52,7 @@ export default class CreateView extends PFComponent<Props, State> {
         field.text({name: "lastName", label: "Last Name"})
         field.password({name: "password", label: "Password", required: true})
         field.email({name: "email", label: "Email", required: true})
-        field.select({name: "select", label: "Select", required: true, optionLabel: "label", optionValue: "value", options: []})
+        field.select({name: "select", label: "Select", optionLabel: "label", optionValue: "value", options: []})
     }
 
     formSubmit(event: any) {
@@ -60,8 +60,9 @@ export default class CreateView extends PFComponent<Props, State> {
         const _this = this;
         try {
             console.log(this.getFormData())
+            _this.showSuccessFlash("Hmm thik ase sob data")
         }catch (e: any) {
-            console.log(e.message)
+            _this.showErrorFlash(e.message)
         }
 
     }
@@ -75,7 +76,6 @@ export default class CreateView extends PFComponent<Props, State> {
                     <h4>Create</h4>
                 </div>
                 <Card>
-                    <Toast messageType={"success"} message={"Bismillah Message"} />
                     <CardContent>
                         <form >
                             <Row>
