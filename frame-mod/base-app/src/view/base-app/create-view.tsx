@@ -44,13 +44,17 @@ export default class CreateView extends PFComponent<Props, State> {
 
     fieldDefinition(field: FieldSpecification) {
         field.text({
+            required: true,
+            errorText: "Please Enter First Name",
             name: "firstName", label: "First Name", changeEvent: {
                 fire(event: any) {
                 }
             }
         })
         field.text({name: "lastName", label: "Last Name"})
-        field.password({name: "password", label: "Password", required: true})
+        field.password({
+            errorText: "Please enter password",
+            name: "password", label: "Password", required: true, helperText: "Password must be 8 digit"})
         field.email({name: "email", label: "Email", required: true})
         field.select({name: "select", label: "Select", optionLabel: "label", optionValue: "value", options: []})
     }
