@@ -95,12 +95,12 @@ export default class CrudListView extends PFComponent<Props, State> {
         const _this = this;
         return (
             <React.Fragment>
-                <Table>
+                <Table isHoverEffectInRow={true}>
                     <TableHead color={"dark"}>
                         <TableRow>
-                            <TableHeadCell>Name</TableHeadCell>
+                            <TableHeadCell isSortAble={true} sortDirection={"desc"}>Name</TableHeadCell>
                             <TableHeadCell>Title</TableHeadCell>
-                            <TableHeadCell>Type</TableHeadCell>
+                            <TableHeadCell isSortAble={true}>Type</TableHeadCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
