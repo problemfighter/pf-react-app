@@ -105,7 +105,7 @@ export default class CrudListView extends PFComponent<Props, State> {
                     </TableHead>
                     <TableBody>
                         {_this.state.list.map((row: any, index: any) => (
-                            <TableRow>
+                            <TableRow key={index}>
                                 <TableCell>{row.name}</TableCell>
                                 <TableCell>{row.title}</TableCell>
                                 <TableCell>{row.type}</TableCell>
