@@ -10,4 +10,8 @@ export default class AppConfig extends PFAppConfig {
         return (<AppBeforeRenderView componentState={componentState} component={component}/>)
     }
 
+    public getBaseURL(): string {
+        return "https://flask-hmtmcse.herokuapp.com/";
+    }
+
 }

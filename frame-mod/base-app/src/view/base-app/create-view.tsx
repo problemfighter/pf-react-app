@@ -43,20 +43,19 @@ export default class CreateView extends PFComponent<Props, State> {
 
 
     fieldDefinition(field: FieldSpecification) {
-        field.text({
-            required: true,
-            errorText: "Please Enter First Name",
-            name: "firstName", label: "First Name", changeEvent: {
-                fire(event: any) {
-                }
-            }
-        })
-        field.text({name: "lastName", label: "Last Name"})
-        field.password({
-            errorText: "Please enter password",
-            name: "password", label: "Password", required: true, helperText: "Password must be 8 digit"})
-        field.email({name: "email", label: "Email", required: true})
-        field.select({name: "select", label: "Select", optionLabel: "label", optionValue: "value", options: []})
+
+        const type = [
+            {value: 'Slider', label: 'Slider'},
+            {value: 'Thumb', label: 'Thumb'},
+            {value: 'TextOnly', label: 'TextOnly'},
+        ]
+
+        field.text({name: "name", label: "Name", required: true})
+        field.text({name: "title", label: "Title", required: true})
+        field.select({name: "type", label: "Type", required: true, options: type, optionValue: "value", optionLabel: "label"})
+        field.text({name: "target", label: "Target"})
+        field.text({name: "targetType", label: "Target Type"})
+        field.textArea({name: "description", label: "Description"})
     }
 
     formSubmit(event: any) {
@@ -73,7 +72,6 @@ export default class CreateView extends PFComponent<Props, State> {
 
 
     renderUI() {
-        console.log("Updatedddddddd..............................")
         return (
             <React.Fragment>
                 <div className="pt-3 pb-2 mb-2 border-bottom">
@@ -83,11 +81,12 @@ export default class CreateView extends PFComponent<Props, State> {
                     <CardContent>
                         <form >
                             <Row>
-                                <Select {...this.setupFieldAttrs("select")} addWrapperClass={"col-6"}/>
-                                <TextField {...this.setupFieldAttrs("firstName")} addWrapperClass={"col-6"}/>
-                                <TextField {...this.setupFieldAttrs("lastName")} addWrapperClass={"col-6"}/>
-                                <TextField {...this.setupFieldAttrs("email")} addWrapperClass={"col-6"}/>
-                                <TextField {...this.setupFieldAttrs("password")} addWrapperClass={"col-6"}/>
+                                <TextField {...this.setupFieldAttrs("name")} addWrapperClass={"col-6"}/>
+                                <TextField {...this.setupFieldAttrs("title")} addWrapperClass={"col-6"}/>
+                                <Select {...this.setupFieldAttrs("type")} addWrapperClass={"col-12"}/>
+                                <TextField {...this.setupFieldAttrs("target")} addWrapperClass={"col-6"}/>
+                                <TextField {...this.setupFieldAttrs("targetType")} addWrapperClass={"col-6"}/>
+                                <TextField {...this.setupFieldAttrs("description")} addWrapperClass={"col-12"}/>
                                 <Column span={12}>
                                     <span className={"float-end"}>
                                         <Button type={"submit"} onClick={(event: any) =>{ this.formSubmit(event)}}>Save</Button>

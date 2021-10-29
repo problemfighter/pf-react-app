@@ -4,6 +4,7 @@ import PFLayoutInfoData from "@pfo/pf-react/src/artifacts/data/pf-layout-info-da
 import FMUrlMappingHolder from "./fm-url-mapping-holder";
 import PublicLayout from "../view/layouts/public-layout";
 import PrivateLayout from "../view/layouts/private-layout";
+import CrudUrlMapping from "../view/crud/crud-url-mapping";
 
 
 const DashboardView = React.lazy(() => import('../view/base-app/dashboard-view'));
@@ -29,6 +30,8 @@ export default class URLMapping extends PFURLMapping {
 
         let publicLayoutInfo: PFLayoutInfoData = new PFLayoutInfoData();
         publicLayoutInfo.layout = PublicLayout
+
+        CrudUrlMapping.privateUrlMappings(privateLayoutInfo)
 
         pageWithLayout = FMUrlMappingHolder.getMappings(publicLayoutInfo, privateLayoutInfo, pageWithLayout);
 
