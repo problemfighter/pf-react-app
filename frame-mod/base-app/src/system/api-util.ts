@@ -2,6 +2,8 @@ import {AppConstant} from "./app-constant";
 import PFHTTResponse from "@pfo/pf-react/src/artifacts/processor/http/pf-http-response";
 import {AppMessage} from "./app-message";
 import {PFException} from "@pfo/pf-react/src/artifacts/common/pf-exception";
+import SystemConfig from "./system-config";
+import PFLoadDataPrams from "@pfo/pf-react/src/artifacts/data/pf-load-data-prams";
 
 export const ApiUtil = {
 
@@ -81,6 +83,34 @@ export const ApiUtil = {
 
     isEmptyObject(obj: object): boolean {
         return Object.keys(obj).length === 0
+    },
+
+    resetSearchAndPagination: (component: any) => {
+        component.state.queryCondition = {};
+        component.state.pageOffset = 0;
+        component.state.itemPerPage = SystemConfig.itemPerPage();
+        component.state.itemOffset = 0;
+        component.setState({search: null})
+    },
+
+    getSearchSortAndPaginationData: (parentState: any, dataParams: PFLoadDataPrams = new PFLoadDataPrams()) => {
+        let state = parentState.state;
+        let queryParams: { [key: string]: any } = {}
+        if (dataParams.params) {
+            queryParams = dataParams.params
+        }
+        if (dataParams.isReset) {
+            ApiUtil.resetSearchAndPagination(parentState)
+            return queryParams
+        }
+        queryParams['page'] = state.itemOffset;
+        queryParams['per-page'] = state.maxItem;
+        queryParams['sort-order'] = state.sortDirection;
+        queryParams['sort-field'] = state.orderBy;
+        if (state.search) {
+            queryParams["search"] = state.search;
+        }
+        return queryParams;
     },
 
 };
