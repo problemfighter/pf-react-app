@@ -101,7 +101,7 @@ export default class CrudListView extends PFComponent<Props, State> {
         return (
             <React.Fragment>
                 <Table isHoverEffectInRow={true}>
-                    <DynamicTableHead columns={tableHeaderDefinition} onClickSort={(event, sortDirection, fieldName)=>{_this.tableColumnSortAction(event, sortDirection as SortDirection, fieldName, () => {_this.loadData()})}}/>
+                    <DynamicTableHead currentSortFieldName={_this.state.orderBy} columns={tableHeaderDefinition} onClickSort={(event, sortDirection, fieldName)=>{_this.tableColumnSortAction(event, sortDirection as SortDirection, fieldName, () => {_this.loadData()})}}/>
                     <TableBody>
                         {_this.state.list.map((row: any, index: any) => (
                             <TableRow key={index}>
