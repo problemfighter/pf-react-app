@@ -15,6 +15,7 @@ import TableCell from "../../../../../dev-libs/pf-rui/bootstrap/table/TableCell"
 import {DynamicTableHeadColumn} from "@pfo/pf-rui/spec/table/DynamicTableHeadSpec";
 import DynamicTableHead from "../../../../../dev-libs/pf-rui/bootstrap/table/DynamicTableHead";
 import {SortDirection} from "@pfo/pf-react/src/artifacts//data/pf-mixed-data";
+import Pagination from "../../../../../dev-libs/pf-rui/bootstrap/Pagination";
 
 interface Props extends PFProps {}
 
@@ -43,8 +44,7 @@ export default class CrudListView extends PFComponent<Props, State> {
         this.loadData();
     }
 
-    componentDidUpdate(prevProps: Props) {
-    }
+    componentDidUpdate(prevProps: Props) {}
 
     loadData(dataParams: PFLoadDataPrams = new PFLoadDataPrams()) {
         const _this = this;
@@ -63,7 +63,7 @@ export default class CrudListView extends PFComponent<Props, State> {
                     }
                     _this.setState({
                         list: list,
-                        totalItem: totalItem,
+                        totalPage: totalItem,
                         apiData: apiResponse
                     });
                 }
@@ -112,6 +112,7 @@ export default class CrudListView extends PFComponent<Props, State> {
                         ))}
                     </TableBody>
                 </Table>
+                <Pagination totalPage={_this.state.totalPage} currentPage={_this.state.currentPage} itemPerPage={_this.state.itemPerPage}/>
             </React.Fragment>
         )
     }

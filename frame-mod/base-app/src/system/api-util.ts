@@ -87,9 +87,8 @@ export const ApiUtil = {
 
     resetSearchAndPagination: (component: any) => {
         component.state.queryCondition = {};
-        component.state.pageOffset = 0;
+        component.state.currentPage = 0;
         component.state.itemPerPage = SystemConfig.itemPerPage();
-        component.state.itemOffset = 0;
         component.setState({search: null})
     },
 
@@ -103,8 +102,8 @@ export const ApiUtil = {
             ApiUtil.resetSearchAndPagination(parentState)
             return queryParams
         }
-        queryParams['page'] = state.itemOffset;
-        queryParams['per-page'] = state.maxItem;
+        queryParams['page'] = state.currentPage;
+        queryParams['per-page'] = state.itemPerPage;
         queryParams['sort-order'] = state.sortDirection;
         queryParams['sort-field'] = state.orderBy;
         if (state.search) {
