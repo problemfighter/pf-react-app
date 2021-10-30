@@ -12,11 +12,11 @@ import Table from "../../../../../dev-libs/pf-rui/bootstrap/table/Table";
 import TableBody from "../../../../../dev-libs/pf-rui/bootstrap/table/TableBody";
 import TableRow from "@pfo/pf-rui/bootstrap/table/TableRow";
 import TableCell from "../../../../../dev-libs/pf-rui/bootstrap/table/TableCell";
-import TableHead from "@pfo/pf-rui/bootstrap/table/TableHead";
-import TableHeadCell from "@pfo/pf-rui/bootstrap/table/TableHeadCell";
+import {DynamicTableHeadColumn} from "@pfo/pf-rui/spec/table/DynamicTableHeadSpec";
+import DynamicTableHead from "../../../../../dev-libs/pf-rui/bootstrap/table/DynamicTableHead";
+import {SortDirection} from "@pfo/pf-react/src/artifacts//data/pf-mixed-data";
 
 interface Props extends PFProps {}
-
 
 
 class State extends PFComponentState {
@@ -24,6 +24,11 @@ class State extends PFComponentState {
     list: any = [];
 }
 
+const tableHeaderDefinition: Array<DynamicTableHeadColumn> = [
+    {displayName: "Name", fieldName: "name", isSortAble: true},
+    {displayName: "Title", fieldName: "title", isSortAble: true},
+    {displayName: "Type", fieldName: "type"},
+]
 
 export default class CrudListView extends PFComponent<Props, State> {
 
@@ -96,13 +101,7 @@ export default class CrudListView extends PFComponent<Props, State> {
         return (
             <React.Fragment>
                 <Table isHoverEffectInRow={true}>
-                    <TableHead color={"dark"}>
-                        <TableRow>
-                            <TableHeadCell isSortAble={true} sortDirection={"desc"}>Name</TableHeadCell>
-                            <TableHeadCell>Title</TableHeadCell>
-                            <TableHeadCell isSortAble={true}>Type</TableHeadCell>
-                        </TableRow>
-                    </TableHead>
+                    <DynamicTableHead columns={tableHeaderDefinition} onClickSort={(event, sortDirection, fieldName)=>{_this.tableColumnSortAction(event, sortDirection as SortDirection, fieldName, () => {_this.loadData()})}}/>
                     <TableBody>
                         {_this.state.list.map((row: any, index: any) => (
                             <TableRow key={index}>
