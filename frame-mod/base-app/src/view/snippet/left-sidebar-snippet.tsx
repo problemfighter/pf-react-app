@@ -32,7 +32,7 @@ export default class LeftSidebarSnippet extends PFReactComponent<Props, State> {
                 <aside className="sidebar-nav-wrapper">
                     <div className="navbar-logo">
                         <a href="#">
-                            <img src={sidebarLogo} alt="sidebar-logo"/>
+                            <img className={"logo"} src={sidebarLogo} alt="sidebar-logo"/>
                         </a>
                     </div>
 
@@ -53,7 +53,7 @@ export default class LeftSidebarSnippet extends PFReactComponent<Props, State> {
                                 <ul id="ddmenu_1" className="collapse show dropdown-nav">
                                     <li>
                                         <a href="#" className="active">
-                                            <i className="bi bi-file-earmark-medical"></i>
+                                            <i className="icon bi bi-file-earmark-medical"></i>
                                             <span className="text">Sub Page</span>
                                         </a>
                                     </li>

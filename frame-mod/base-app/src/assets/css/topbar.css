@@ -1,0 +1,129 @@
+
+/* ========== header css start ========== */
+.header {
+    padding: 10px 0;
+    background: #fff;
+}
+.header .header-left .header-left-btn {
+    border: 1px solid #efefef;
+    background: rgba(239, 239, 239, 0.5);
+    border-radius: 10px;
+    height: 46px;
+    width: 46px;
+    cursor: pointer;
+}
+.header .header-right {
+    display: flex;
+    justify-content: flex-end;
+}
+.header .header-right .header-right-dropdown-btn {
+    border: 1px solid #efefef;
+    background: rgba(239, 239, 239, 0.5);
+    border-radius: 10px;
+    height: 46px;
+    width: 46px;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.header .header-right .header-right-dropdown-btn::after {
+    display: none;
+}
+.header .header-right .dropdown-menu {
+    width: 350px;
+    border: 1px solid #efefef;
+    padding: 10px 10px;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    top: 8px ;
+    right: 0;
+    position: absolute;
+    transform: translate3d(0px, 60px, 0px);
+    border-radius: 10px;
+}
+.header .header-right .dropdown-menu li {
+    padding: 3px 0px;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    border-bottom: 1px solid #efefef;
+    position: relative;
+    z-index: 2;
+}
+.header .header-right .dropdown-menu li:hover a {
+    color: #2f80ed;
+    background: rgba(47, 128, 237, 0.05);
+}
+.header .header-right .dropdown-menu li:last-child {
+    border-bottom: none;
+}
+.header .header-right .dropdown-menu li a {
+    padding: 8px 12px;
+    display: flex;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.7);
+    border-radius: 6px;
+}
+.header .header-right .dropdown-box,
+.header .header-right .create-feature-box,
+.header .header-right .profile-box  {
+    position: relative;
+}
+
+.header .header-right .profile-box button {
+    width: auto;
+}
+.header .header-right .profile-box .profile-info {
+    margin: 0 5px;
+}
+.header .header-right .profile-box .profile-info .info {
+    display: flex;
+    align-items: center;
+}
+.header .header-right .profile-box .profile-info .info .image {
+    border: 2px solid #f9f9f9;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    margin-left: 16px;
+    position: relative;
+}
+.header .header-right .profile-box .profile-info .info .image img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.header .header-right .profile-box .dropdown-menu li a,
+.header .header-right .create-feature-box .dropdown-menu li a{
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+.header .header-right .profile-box .dropdown-menu,
+.header .header-right .create-feature-box .dropdown-menu {
+    width: 230px;
+}
+.header .header-right .profile-box .dropdown-menu li a i,
+.header .header-right .create-feature-box .dropdown-menu li a i {
+    margin-right: 15px;
+    font-weight: 700;
+}
+.header .header-right .create-feature-box .dropdown-menu li,
+.header .header-right .profile-box .dropdown-menu li  {
+    border-bottom: none;
+}
+
+
+
+
+
+
+/* ========== header css end ========== */
