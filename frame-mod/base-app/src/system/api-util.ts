@@ -112,4 +112,40 @@ export const ApiUtil = {
         return queryParams;
     },
 
+    managePaginationAttributes: (component: any, callBack?: any) => {
+        let state = component.state
+        return {
+            totalPage: state.totalPage,
+            currentPage: state.currentPage,
+            itemPerPage: state.itemPerPage,
+            onChangePagination: (event: any, pageNumber: number) => {
+                component.setState(
+                    {
+                        currentPage: pageNumber,
+                    }, () => {
+                        if (callBack) {
+                            callBack()
+                        } else if (component.loadData) {
+                            component.loadData()
+                        }
+                    }
+                );
+            },
+            onChangeItemPerPage: (event: any, itemPerPage: number) => {
+                ApiUtil.resetSearchAndPagination(component);
+                component.setState(
+                    {
+                        itemPerPage: itemPerPage,
+                    }, () => {
+                        if (callBack) {
+                            callBack()
+                        } else if (component.loadData) {
+                            component.loadData()
+                        }
+                    }
+                );
+            }
+        }
+    }
+
 };

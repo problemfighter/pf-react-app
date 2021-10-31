@@ -116,7 +116,7 @@ export default class CrudListView extends PFComponent<Props, State> {
                             ))}
                         </TableBody>
                     </Table>
-                    <Pagination totalPage={_this.state.totalPage} currentPage={_this.state.currentPage} itemPerPage={_this.state.itemPerPage}/>
+                    <Pagination {...ApiUtil.managePaginationAttributes(_this)}/>
                 </section>
             </React.Fragment>
         )
