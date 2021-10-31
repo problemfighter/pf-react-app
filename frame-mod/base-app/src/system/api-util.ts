@@ -119,6 +119,7 @@ export const ApiUtil = {
     resetSearchAndPagination: (component: any) => {
         component.state.queryCondition = {};
         component.state.currentPage = 1;
+        component.state.search = undefined;
         component.state.itemPerPage = SystemConfig.itemPerPage();
         component.notifyComponentChange()
     },
