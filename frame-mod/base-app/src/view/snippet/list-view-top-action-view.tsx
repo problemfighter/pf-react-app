@@ -27,12 +27,12 @@ export default class ListViewTopActionView extends PFComponent<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state.search = this.props.parentComponent.search
     }
 
     componentDidMount() {}
 
-    componentDidUpdate(prevProps: Props) {}
+    componentDidUpdate(prevProps: Props) {
+    }
 
     private submitSearchFormData(event: any) {
         event.preventDefault()
@@ -74,7 +74,7 @@ export default class ListViewTopActionView extends PFComponent<Props, State> {
 
     private getReloadButton() {
         let reloadButton = (
-            <Button variant={"danger"} title={"Reload"} onClick={(event: any) => {
+            <Button variant={"danger"} title={"Reload"} type={"reset"} onClick={(event: any) => {
                 this.reloadButtonOnClick(event)
             }}>
                 <i className="bi bi-arrow-clockwise"></i>
@@ -108,7 +108,7 @@ export default class ListViewTopActionView extends PFComponent<Props, State> {
                     <div className="mb-2 d-flex sm-d-block">
                         <form onSubmit={(event: any) => {this.submitSearchFormData(event)}}>
                             <div className="input-group">
-                                <Input type="text" value={this.state.search} className="form-control" placeholder="Search" onChange={(event: any) => {this.handleSearchOnChange(event)}}/>
+                                <Input type="text" placeholder="Search" onChange={(event: any) => {this.handleSearchOnChange(event)}}/>
                                 <Button variant={"secondary"} title={"Search"} type={"submit"}><i className="bi bi-search"></i></Button>
                                 {this.getAddButton()}
                                 {this.getReloadButton()}
