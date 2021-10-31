@@ -81,3 +81,10 @@
     position: relative;
 }
 /* ========== custom-dropdown css end ========== */
+
+/* ========== Random css start ========== */
+.additional-action {
+    width: 23%;
+    margin-left: 5px;
+}
+/* ========== Random css end ========== */

@@ -16,6 +16,8 @@ import {DynamicTableHeadColumn} from "@pfo/pf-rui/spec/table/DynamicTableHeadSpe
 import DynamicTableHead from "../../../../../dev-libs/pf-rui/bootstrap/table/DynamicTableHead";
 import {SortDirection} from "@pfo/pf-react/src/artifacts//data/pf-mixed-data";
 import Pagination from "../../../../../dev-libs/pf-rui/bootstrap/Pagination";
+import Button from "@pfo/pf-rui/bootstrap/Button";
+import ListViewTopActionView from "../snippet/list-view-top-action-view";
 
 interface Props extends PFProps {}
 
@@ -100,19 +102,22 @@ export default class CrudListView extends PFComponent<Props, State> {
         const _this = this;
         return (
             <React.Fragment>
-                <Table isHoverEffectInRow={true}>
-                    <DynamicTableHead currentSortFieldName={_this.state.orderBy} columns={tableHeaderDefinition} onClickSort={(event, sortDirection, fieldName)=>{_this.tableColumnSortAction(event, sortDirection as SortDirection, fieldName, () => {_this.loadData()})}}/>
-                    <TableBody>
-                        {_this.state.list.map((row: any, index: any) => (
-                            <TableRow key={index}>
-                                <TableCell>{row.name}</TableCell>
-                                <TableCell>{row.title}</TableCell>
-                                <TableCell>{row.type}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-                <Pagination totalPage={_this.state.totalPage} currentPage={_this.state.currentPage} itemPerPage={_this.state.itemPerPage}/>
+                <section className={"content-section"}>
+                    <ListViewTopActionView parentComponent={_this} route={_this.props.route} title={CrudConfig.NAME_CONSTANT.LIST} addButtonURL={CrudUrlMapping.ui.create}/>
+                    <Table isHoverEffectInRow={true}>
+                        <DynamicTableHead currentSortFieldName={_this.state.orderBy} columns={tableHeaderDefinition} onClickSort={(event, sortDirection, fieldName)=>{_this.tableColumnSortAction(event, sortDirection as SortDirection, fieldName, () => {_this.loadData()})}}/>
+                        <TableBody>
+                            {_this.state.list.map((row: any, index: any) => (
+                                <TableRow key={index}>
+                                    <TableCell>{row.name}</TableCell>
+                                    <TableCell>{row.title}</TableCell>
+                                    <TableCell>{row.type}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                    <Pagination totalPage={_this.state.totalPage} currentPage={_this.state.currentPage} itemPerPage={_this.state.itemPerPage}/>
+                </section>
             </React.Fragment>
         )
     }
