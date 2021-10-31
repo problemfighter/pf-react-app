@@ -1,10 +1,11 @@
 import React from 'react';
 import {PFProps} from "@pfo/pf-react/src/artifacts/interface/pf-mixed-interface";
 import PFComponentState from "@pfo/pf-react/src/artifacts/component/pf-component-state";
-import PFReactComponent from "@pfo/pf-react/src/artifacts/component/pf-react-component";
 import Button from "@pfo/pf-rui/bootstrap/Button";
 import {PFUtil} from "@pfo/pf-react/src/artifacts/utils/pf-util";
 import PFLoadDataPrams from "@pfo/pf-react/src/artifacts/data/pf-load-data-prams";
+import PFComponent from "@pfo/pf-react/src/artifacts/component/pf-component";
+import Input from "@pfo/pf-rui/bootstrap/Input";
 
 
 interface Props extends PFProps {
@@ -20,12 +21,13 @@ class State extends PFComponentState {
 
 }
 
-export default class ListViewTopActionView extends PFReactComponent<Props, State> {
+export default class ListViewTopActionView extends PFComponent<Props, State> {
 
     state: State = new State();
 
     constructor(props: Props) {
         super(props);
+        this.state.search = this.props.parentComponent.search
     }
 
     componentDidMount() {}
@@ -67,6 +69,7 @@ export default class ListViewTopActionView extends PFReactComponent<Props, State
         } else if (this.props.parentComponent.loadData) {
             this.props.parentComponent.loadData(new PFLoadDataPrams().resetQuery())
         }
+        this.setState({search: undefined})
     }
 
     private getReloadButton() {
@@ -88,16 +91,24 @@ export default class ListViewTopActionView extends PFReactComponent<Props, State
         return isShowReloadButton ? reloadButton : ""
     }
 
-    render() {
+    private getItemTotalCount() {
+        let count = this.props.parentComponent.state.totalItem
+        if (count) {
+            return "(" + count + ")"
+        }
+        return ""
+    }
+
+    renderUI() {
         const {title, addOtherActions} = this.props
         return (
             <React.Fragment>
                 <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom mt-3">
-                    <h4 className={"section-title"}>{title}</h4>
+                    <h4 className={"section-title"}>{title} {this.getItemTotalCount()}</h4>
                     <div className="mb-2 d-flex sm-d-block">
                         <form onSubmit={(event: any) => {this.submitSearchFormData(event)}}>
                             <div className="input-group">
-                                <input type="text" className="form-control" placeholder="Search" onChange={(event: any) => {this.handleSearchOnChange(event)}}/>
+                                <Input type="text" value={this.state.search} className="form-control" placeholder="Search" onChange={(event: any) => {this.handleSearchOnChange(event)}}/>
                                 <Button variant={"secondary"} title={"Search"} type={"submit"}><i className="bi bi-search"></i></Button>
                                 {this.getAddButton()}
                                 {this.getReloadButton()}

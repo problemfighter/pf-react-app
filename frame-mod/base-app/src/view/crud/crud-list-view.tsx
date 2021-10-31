@@ -16,7 +16,6 @@ import {DynamicTableHeadColumn} from "@pfo/pf-rui/spec/table/DynamicTableHeadSpe
 import DynamicTableHead from "../../../../../dev-libs/pf-rui/bootstrap/table/DynamicTableHead";
 import {SortDirection} from "@pfo/pf-react/src/artifacts//data/pf-mixed-data";
 import Pagination from "../../../../../dev-libs/pf-rui/bootstrap/Pagination";
-import Button from "@pfo/pf-rui/bootstrap/Button";
 import ListViewTopActionView from "../snippet/list-view-top-action-view";
 
 interface Props extends PFProps {}
@@ -55,19 +54,7 @@ export default class CrudListView extends PFComponent<Props, State> {
             {
                 callback(response: PFHTTResponse): void {
                     let apiResponse = ApiUtil.getValidResponseOrNone(response, _this);
-                    let list = [];
-                    if (apiResponse && apiResponse.data) {
-                        list = apiResponse.data;
-                    }
-                    let totalItem = 0;
-                    if (apiResponse && apiResponse.pagination && apiResponse.pagination.total) {
-                        totalItem = apiResponse.pagination.total;
-                    }
-                    _this.setState({
-                        list: list,
-                        totalPage: totalItem,
-                        apiData: apiResponse
-                    });
+                    ApiUtil.initListViewData(apiResponse, _this)
                 }
             },
             {

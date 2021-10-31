@@ -61,6 +61,37 @@ export const ApiUtil = {
         return responseData
     },
 
+    initListViewData: (apiResponse: any, component: any) => {
+        let list = [];
+        if (apiResponse && apiResponse.data) {
+            list = apiResponse.data;
+        }
+
+        let totalItem = 0;
+        if (apiResponse && apiResponse.pagination && apiResponse.pagination.total) {
+            totalItem = apiResponse.pagination.total as number;
+        }
+
+        let totalPage = 0;
+        if (apiResponse && apiResponse.pagination && apiResponse.pagination.totalPage) {
+            totalPage = apiResponse.pagination.totalPage as number;
+        }
+
+        let page = 1;
+        if (apiResponse && apiResponse.pagination && apiResponse.pagination.page) {
+            page = apiResponse.pagination.page as number;
+        }
+
+        component.setState({
+                currentPage: page,
+                list: list,
+                totalPage: totalPage,
+                totalItem: totalItem,
+                apiData: apiResponse
+            }
+        );
+    },
+
     getFormRequestValidResponseOrNone: (response: PFHTTResponse, component: any) => {
         let errorMessage = AppMessage.somethingWentWrong;
         let responseData = undefined
@@ -87,19 +118,20 @@ export const ApiUtil = {
 
     resetSearchAndPagination: (component: any) => {
         component.state.queryCondition = {};
-        component.state.currentPage = 0;
+        component.state.currentPage = 1;
         component.state.itemPerPage = SystemConfig.itemPerPage();
-        component.setState({search: null})
+        component.notifyComponentChange()
     },
 
-    getSearchSortAndPaginationData: (parentState: any, dataParams: PFLoadDataPrams = new PFLoadDataPrams()) => {
-        let state = parentState.state;
+    getSearchSortAndPaginationData: (component: any, dataParams: PFLoadDataPrams = new PFLoadDataPrams()) => {
+        let state = component.state;
         let queryParams: { [key: string]: any } = {}
         if (dataParams.params) {
             queryParams = dataParams.params
         }
         if (dataParams.isReset) {
-            ApiUtil.resetSearchAndPagination(parentState)
+            ApiUtil.resetSearchAndPagination(component)
+            queryParams['per-page'] = SystemConfig.itemPerPage();
             return queryParams
         }
         queryParams['page'] = state.currentPage;
