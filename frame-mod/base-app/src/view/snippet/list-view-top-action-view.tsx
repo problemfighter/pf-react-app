@@ -4,6 +4,7 @@ import PFComponentState from "@pfo/pf-react/src/artifacts/component/pf-component
 import PFReactComponent from "@pfo/pf-react/src/artifacts/component/pf-react-component";
 import Button from "@pfo/pf-rui/bootstrap/Button";
 import {PFUtil} from "@pfo/pf-react/src/artifacts/utils/pf-util";
+import PFLoadDataPrams from "@pfo/pf-react/src/artifacts/data/pf-load-data-prams";
 
 
 interface Props extends PFProps {
@@ -32,13 +33,12 @@ export default class ListViewTopActionView extends PFReactComponent<Props, State
     componentDidUpdate(prevProps: Props) {}
 
     private submitSearchFormData(event: any) {
+        event.preventDefault()
         const _this = this
-        if (_this.props.parentComponent.search) {
-            if (this.props.onSearchSubmit) {
-                this.props.onSearchSubmit(event)
-            } else if (this.props.parentComponent.loadData) {
-                this.props.parentComponent.loadData()
-            }
+        if (this.props.onSearchSubmit) {
+            this.props.onSearchSubmit(event)
+        } else if (this.props.parentComponent.loadData) {
+            this.props.parentComponent.loadData()
         }
     }
 
@@ -65,7 +65,7 @@ export default class ListViewTopActionView extends PFReactComponent<Props, State
         if (this.props.reloadButtonCallBack) {
             this.props.reloadButtonCallBack(event)
         } else if (this.props.parentComponent.loadData) {
-            this.props.parentComponent.loadData()
+            this.props.parentComponent.loadData(new PFLoadDataPrams().resetQuery())
         }
     }
 
