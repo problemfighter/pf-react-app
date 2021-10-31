@@ -17,6 +17,7 @@ import DynamicTableHead from "../../../../../dev-libs/pf-rui/bootstrap/table/Dyn
 import {SortDirection} from "@pfo/pf-react/src/artifacts//data/pf-mixed-data";
 import Pagination from "../../../../../dev-libs/pf-rui/bootstrap/Pagination";
 import ListViewTopActionView from "../snippet/list-view-top-action-view";
+import Dropdown from "../../../../../dev-libs/pf-rui/bootstrap/Dropdown";
 
 interface Props extends PFProps {}
 
@@ -30,6 +31,7 @@ const tableHeaderDefinition: Array<DynamicTableHeadColumn> = [
     {displayName: "Name", fieldName: "name", isSortAble: true},
     {displayName: "Title", fieldName: "title", isSortAble: true},
     {displayName: "Type", fieldName: "type"},
+    {displayName: "Actions", fieldName: "actions"},
 ]
 
 export default class CrudListView extends PFComponent<Props, State> {
@@ -87,11 +89,17 @@ export default class CrudListView extends PFComponent<Props, State> {
 
     renderUI() {
         const _this = this;
+        let list = [
+            'View',
+            'Edit',
+            'Delete',
+        ]
+        let wrapperPlaceholder = <span className="text-black btn-sm"><i className="bi bi-three-dots-vertical"></i></span>
         return (
             <React.Fragment>
                 <section className={"content-section"}>
                     <ListViewTopActionView parentComponent={_this} route={_this.props.route} title={CrudConfig.NAME_CONSTANT.LIST} addButtonURL={CrudUrlMapping.ui.create}/>
-                    <Table isHoverEffectInRow={true}>
+                    <Table isHoverEffectInRow={true} variant={"bordered"}>
                         <DynamicTableHead currentSortFieldName={_this.state.orderBy} columns={tableHeaderDefinition} onClickSort={(event, sortDirection, fieldName)=>{_this.tableColumnSortAction(event, sortDirection as SortDirection, fieldName, () => {_this.loadData()})}}/>
                         <TableBody>
                             {_this.state.list.map((row: any, index: any) => (
@@ -99,6 +107,12 @@ export default class CrudListView extends PFComponent<Props, State> {
                                     <TableCell>{row.name}</TableCell>
                                     <TableCell>{row.title}</TableCell>
                                     <TableCell>{row.type}</TableCell>
+                                    <TableCell>
+                                        <Dropdown
+                                            itemList={list}
+                                            wrapperPlaceholder={wrapperPlaceholder}
+                                        />
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
