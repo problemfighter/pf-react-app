@@ -133,7 +133,7 @@ export default class CrudCreateEditView extends PFComponent<Props, State> {
                                 <Column span={12}>
                                     <span className={"float-end"}>
                                         <Button type={"submit"} onClick={(event: any) =>{ this.submitFormData(event)}}>{this.state.buttonLabel}</Button>
-                                        <Button className="btn btn-danger ms-2" onClick={(event:any) => {PFUtil.gotoUrl(_this, CrudUrlMapping.ui.list)}}>{CrudConfig.NAME_CONSTANT.CANCEL_BUTTON}</Button>
+                                        <Button variant={"danger"} className="ms-2" onClick={(event:any) => {PFUtil.gotoUrl(_this, CrudUrlMapping.ui.list)}}>{CrudConfig.NAME_CONSTANT.CANCEL_BUTTON}</Button>
                                     </span>
                                 </Column>
                             </Row>
