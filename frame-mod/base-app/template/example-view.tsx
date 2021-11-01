@@ -5,7 +5,6 @@ import PFComponent from "@pfo/pf-react/src/artifacts/component/pf-component";
 
 
 interface Props extends PFProps {
-    route: any;
 }
 
 class State extends PFComponentState {
@@ -15,6 +14,8 @@ class State extends PFComponentState {
 export default class ExampleView extends PFComponent<Props, State> {
 
     state: State = new State();
+
+    static defaultProps = {}
 
     constructor(props: Props) {
         super(props);

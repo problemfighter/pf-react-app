@@ -21,7 +21,7 @@ class State extends PFComponentState {
 
 }
 
-export default class ListViewTopActionView extends PFComponent<Props, State> {
+export default class ListViewTopActionHelper extends PFComponent<Props, State> {
 
     state: State = new State();
 

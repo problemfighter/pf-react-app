@@ -8,16 +8,16 @@ import CrudUrlMapping from "./crud-url-mapping";
 import PFLoadDataPrams from "@pfo/pf-react/src/artifacts/data/pf-load-data-prams";
 import {AppConstant} from "../../system/app-constant";
 import CrudConfig from "./crud-config";
-import Table from "../../../../../dev-libs/pf-rui/bootstrap/table/Table";
-import TableBody from "../../../../../dev-libs/pf-rui/bootstrap/table/TableBody";
 import TableRow from "@pfo/pf-rui/bootstrap/table/TableRow";
-import TableCell from "../../../../../dev-libs/pf-rui/bootstrap/table/TableCell";
 import {DynamicTableHeadColumn} from "@pfo/pf-rui/spec/table/DynamicTableHeadSpec";
-import DynamicTableHead from "../../../../../dev-libs/pf-rui/bootstrap/table/DynamicTableHead";
 import {SortDirection} from "@pfo/pf-react/src/artifacts//data/pf-mixed-data";
-import Pagination from "../../../../../dev-libs/pf-rui/bootstrap/Pagination";
-import ListViewTopActionView from "../snippet/list-view-top-action-view";
-import Dropdown from "../../../../../dev-libs/pf-rui/bootstrap/Dropdown";
+import ListViewTopActionHelper from "../../helper/list-view-top-action-helper";
+import {TableActionHelper, TableActionItemHelper} from "../../helper/table-action-helper";
+import Table from "@pfo/pf-rui/bootstrap/table/Table";
+import DynamicTableHead from "@pfo/pf-rui/bootstrap/table/DynamicTableHead";
+import TableBody from "@pfo/pf-rui/bootstrap/table/TableBody";
+import TableCell from "@pfo/pf-rui/bootstrap/table/TableCell";
+import Pagination from "@pfo/pf-rui/bootstrap/Pagination";
 
 interface Props extends PFProps {}
 
@@ -31,7 +31,7 @@ const tableHeaderDefinition: Array<DynamicTableHeadColumn> = [
     {displayName: "Name", fieldName: "name", isSortAble: true},
     {displayName: "Title", fieldName: "title", isSortAble: true},
     {displayName: "Type", fieldName: "type"},
-    {displayName: "Actions", fieldName: "actions"},
+    {displayName: "Actions", fieldName: "actions", isActionColumn: true},
 ]
 
 export default class CrudListView extends PFComponent<Props, State> {
@@ -87,18 +87,26 @@ export default class CrudListView extends PFComponent<Props, State> {
         );
     }
 
+    private getTableActions(row: any, index: any) {
+        const _this = this
+        let id = row.id
+        let itemList = TableActionItemHelper.getDefaultTableActions(
+            CrudUrlMapping.ui.details + "/" + id,
+            CrudUrlMapping.ui.update + "/" + id,
+            (data: any) => {
+                this.delete(id)
+            },
+            id
+        )
+        return itemList
+    }
+
     renderUI() {
         const _this = this;
-        let list = [
-            'View',
-            'Edit',
-            'Delete',
-        ]
-        let wrapperPlaceholder = <span className="text-black btn-sm"><i className="bi bi-three-dots-vertical"></i></span>
         return (
             <React.Fragment>
                 <section className={"content-section"}>
-                    <ListViewTopActionView parentComponent={_this} route={_this.props.route} title={CrudConfig.NAME_CONSTANT.LIST} addButtonURL={CrudUrlMapping.ui.create}/>
+                    <ListViewTopActionHelper parentComponent={_this} route={_this.props.route} title={CrudConfig.NAME_CONSTANT.LIST} addButtonURL={CrudUrlMapping.ui.create}/>
                     <Table isHoverEffectInRow={true} variant={"bordered"}>
                         <DynamicTableHead currentSortFieldName={_this.state.orderBy} columns={tableHeaderDefinition} onClickSort={(event, sortDirection, fieldName)=>{_this.tableColumnSortAction(event, sortDirection as SortDirection, fieldName, () => {_this.loadData()})}}/>
                         <TableBody>
@@ -107,11 +115,8 @@ export default class CrudListView extends PFComponent<Props, State> {
                                     <TableCell>{row.name}</TableCell>
                                     <TableCell>{row.title}</TableCell>
                                     <TableCell>{row.type}</TableCell>
-                                    <TableCell>
-                                        <Dropdown
-                                            itemList={list}
-                                            wrapperPlaceholder={wrapperPlaceholder}
-                                        />
+                                    <TableCell className={"text-center"}>
+                                        <TableActionHelper itemList={_this.getTableActions(row, index)} component={_this}/>
                                     </TableCell>
                                 </TableRow>
                             ))}
