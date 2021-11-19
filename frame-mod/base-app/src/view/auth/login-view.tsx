@@ -7,10 +7,10 @@ import './../../assets/css/login.css'
 import Card from "@pfo/pf-rui/bootstrap/card/Card";
 import Container from "@pfo/pf-rui/bootstrap/Container";
 import CardContent from "@pfo/pf-rui/bootstrap/card/CardContent";
-import TextField from "../../../../../dev-libs/pf-rui/bootstrap/TextField";
 import Row from "@pfo/pf-rui/bootstrap/Row";
 import Column from "@pfo/pf-rui/bootstrap/Column";
-import Button from "../../../../../dev-libs/pf-rui/bootstrap/Button";
+import TextField from "@pfo/pf-rui/bootstrap/TextField";
+import Button from "@pfo/pf-rui/bootstrap/Button";
 
 interface Props extends PFProps {
     route: any;
@@ -38,10 +38,6 @@ export default class LoginView extends PFComponent<Props, State> {
         event.preventDefault();
         const _this = this;
         const data = new FormData(event.currentTarget);
-        console.log(data)
-        console.log(event.target.elements)
-        console.log(event.target[0].name)
-        console.log(event.target[1].value)
     }
 
     renderUI() {
