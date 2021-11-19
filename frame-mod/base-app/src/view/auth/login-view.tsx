@@ -11,9 +11,12 @@ import Row from "@pfo/pf-rui/bootstrap/Row";
 import Column from "@pfo/pf-rui/bootstrap/Column";
 import TextField from "@pfo/pf-rui/bootstrap/TextField";
 import Button from "@pfo/pf-rui/bootstrap/Button";
+import {FieldSpecification} from "@pfo/pf-react/src/artifacts/data/pf-input-definition";
 
 interface Props extends PFProps {
-    route: any;
+    logo?: any
+    title?: String
+    formSubmit?: (event: any, data: any, parentComponent: any) => void;
 }
 
 class State extends PFComponentState {
@@ -23,6 +26,11 @@ class State extends PFComponentState {
 export default class LoginView extends PFComponent<Props, State> {
 
     state: State = new State();
+
+    static defaultProps = {
+        logo: loginLogo,
+        title: "Problem Fighter"
+    }
 
     constructor(props: Props) {
         super(props);
@@ -34,13 +42,26 @@ export default class LoginView extends PFComponent<Props, State> {
     componentDidUpdate(prevProps: Props) {
     }
 
+    fieldDefinition(field: FieldSpecification) {
+        field.email({name: "identifier", label: "Email", required: true, placeholder:"Enter your email", errorText: "Please enter email address"})
+        field.password({name: "password", label: "Password", required: true, placeholder: "Enter your password", errorText: "Please enter password"})
+    }
+
     formSubmit(event: any) {
         event.preventDefault();
         const _this = this;
-        const data = new FormData(event.currentTarget);
+        try {
+            let data = _this.getFormData()
+            if (_this.props.formSubmit) {
+                _this.props.formSubmit(event, data, _this)
+            }
+        } catch (e: any) {
+            _this.showErrorFlash(e.message)
+        }
     }
 
     renderUI() {
+        const {logo, title} = this.props
         return (
             <React.Fragment>
                 <main className="login-view-wrapper">
@@ -49,15 +70,15 @@ export default class LoginView extends PFComponent<Props, State> {
                             <Card>
                                 <CardContent>
                                     <div className="company-logo p-2">
-                                        <img src={loginLogo} className="rounded-circle mx-auto d-block" width="132" height="132"/>
+                                        <img src={logo} className="rounded-circle mx-auto d-block" width="132" height="132"/>
                                     </div>
                                     <div className="text-center mb-3">
-                                        <h3>Problem Fighter</h3>
+                                        <h3>{title}</h3>
                                     </div>
                                     <div className="login-form">
                                         <form method={"post"} className={"row"} noValidate={true} onSubmit={(event:any) => {this.formSubmit(event)}}>
-                                            <TextField wrapperClass={"mb-4"} name="email" label="Email" type={"email"} required={true} placeholder={"Enter your email"}/>
-                                            <TextField wrapperClass={"mb-0"} name="password" label="Password" type={"password"} required={true} placeholder={"Enter your password"}/>
+                                            <TextField {...this.setupFieldAttrs("identifier")} wrapperClass={"mb-4"}/>
+                                            <TextField {...this.setupFieldAttrs("password")} wrapperClass={"mb-0"}/>
                                             <p className=" forgot mt-0"><a href="#">Forgot password?</a></p>
                                             <TextField type={"checkbox"} name={"rememberMe"} label={"Remember me"} addWrapperClass={"remember-me"}/>
                                             <Row>
