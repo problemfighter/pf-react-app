@@ -12,6 +12,8 @@ import Container from "@pfo/pf-rui/bootstrap/Container";
 import PFLayoutRenderer from "@pfo/pf-react/src/artifacts/component/pf-layout-rander";
 import {DummyTopNavBar, TopNavData} from "../../data/top-nav-data";
 import {DummyLeftNavBar, LeftNavData} from "../../data/left-nav-data";
+import PFBrowserStorageManager from "@pfo/pf-react/src/artifacts/manager/pf-browser-storage-manager";
+import {Redirect} from "react-router";
 
 interface Props {
     route?: any;
@@ -29,6 +31,9 @@ export default class PrivateLayout extends PFReactComponent<Props, any> {
     }
 
     render() {
+        if (!Boolean(PFBrowserStorageManager.getByKey("isAuthorized"))) {
+            return (<Redirect to="/"/>);
+        }
         const {component, route, appConfig, topNavData, leftNavData} = this.props;
         return (
             <Bootstrap>
