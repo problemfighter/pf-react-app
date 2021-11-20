@@ -5,7 +5,6 @@ import PFReactComponent from "@pfo/pf-react/src/artifacts/component/pf-react-com
 import Container from "@pfo/pf-rui/bootstrap/Container";
 import Row from "@pfo/pf-rui/bootstrap/Row";
 import Column from "@pfo/pf-rui/bootstrap/Column";
-import avatar from "./../../assets/img/avatar.png"
 import {TopNavData} from "../../data/top-nav-data";
 
 interface Props extends PFProps {
@@ -43,6 +42,36 @@ export default class TopBarSnippet extends PFReactComponent<Props, State> {
         )
     }
 
+    onClickLogout(event: any) {
+        if (this.props.topNavData?.logoutAction) {
+            this.props.topNavData?.logoutAction(event)
+        }
+    }
+
+    getNavIcon(item: any) {
+        if (item.iconClass) {
+            return <i className={"icon " + item.iconClass}></i>
+        }
+        return ""
+    }
+
+    getNavItems(navItems?: Array<any>) {
+        const _this = this
+        return (
+            <React.Fragment>
+                {navItems?.map((item: any, index: any) => (
+                        <li key={index}>
+                            <a href={item.url}>
+                                {_this.getNavIcon(item)}
+                                {item.displayName}
+                            </a>
+                        </li>
+                    )
+                )}
+            </React.Fragment>
+        )
+    }
+
     private profileSection() {
         return (
             <div className="profile-box ml-15">
@@ -50,24 +79,15 @@ export default class TopBarSnippet extends PFReactComponent<Props, State> {
                     <div className="profile-info">
                         <div className="info">
                             <div className="image">
-                                <img src={avatar}/>
+                                <img src={this.props.topNavData?.avatar}/>
                             </div>
                         </div>
                     </div>
                     <i className="bi bi-chevron-down"></i>
                 </button>
                 <ul className="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a href="#">
-                            <i className="bi bi-person"></i>View Profile
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i className="bi bi-gear"></i>Settings
-                        </a>
-                    </li>
-                    <li>
+                    {this.getNavItems(this.props.topNavData?.operatorNavItemList)}
+                    <li onClick={(event: any) => {this.onClickLogout(event)}}>
                         <a href="#">
                             <i className="bi bi-box-arrow-in-left"></i>Logout
                         </a>
@@ -84,11 +104,7 @@ export default class TopBarSnippet extends PFReactComponent<Props, State> {
                     <i className="bi bi-list-task"></i>
                 </button>
                 <ul className="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a href="#">
-                            <i className="bi bi-file-earmark-plus"></i> Create Supplier
-                        </a>
-                    </li>
+                    {this.getNavItems(this.props.topNavData?.quickActionItemList)}
                 </ul>
             </div>
         )
