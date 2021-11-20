@@ -102,7 +102,7 @@
 }
 
 .sidebar-nav-wrapper .sidebar-nav ul .nav-item.nav-item-has-children > a::after {
-    content: "\f282";
+    content: "\f286";
     font: normal normal normal 1em/1 "bootstrap-icons";
     position: absolute;
     right: 25px;

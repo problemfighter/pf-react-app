@@ -6,9 +6,10 @@ import Container from "@pfo/pf-rui/bootstrap/Container";
 import Row from "@pfo/pf-rui/bootstrap/Row";
 import Column from "@pfo/pf-rui/bootstrap/Column";
 import avatar from "./../../assets/img/avatar.png"
+import {TopNavData} from "../../data/top-nav-data";
 
 interface Props extends PFProps {
-    route: any;
+    topNavData?: TopNavData
 }
 
 class State extends PFComponentState {
@@ -80,7 +81,7 @@ export default class TopBarSnippet extends PFReactComponent<Props, State> {
         return (
             <div className="create-feature-box d-none d-md-flex">
                 <button className="dropdown-toggle header-right-dropdown-btn" type="button" data-bs-toggle="dropdown">
-                    <i className="bi bi-plus-circle"></i>
+                    <i className="bi bi-list-task"></i>
                 </button>
                 <ul className="dropdown-menu dropdown-menu-end">
                     <li>
