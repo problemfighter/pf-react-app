@@ -36,7 +36,7 @@ export class DummyTopNavBar {
         ]
 
         topNavData.operatorNavItemList = [
-            {displayName: "View Profile", url: "#", iconClass: "bi bi-person"},
+            {displayName: "View Profile", url: "#", iconClass: "bi bi-card-heading"},
             {displayName: "Settings", url: "#", iconClass: "bi bi-gear"},
         ]
 
