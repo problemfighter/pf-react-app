@@ -34,7 +34,13 @@ export default class PrivateLayout extends PFReactComponent<Props, any> {
         if (!Boolean(PFBrowserStorageManager.getByKey("isAuthorized"))) {
             return (<Redirect to="/"/>);
         }
-        const {component, route, appConfig, topNavData, leftNavData} = this.props;
+        const {component, route, appConfig, topNavData} = this.props;
+        let leftNavData = this.props.leftNavData
+        let storageNav = PFBrowserStorageManager.getAsJSON("navData")
+        if (storageNav && leftNavData) {
+            leftNavData["leftNavItems"] = storageNav
+        }
+        console.log(leftNavData)
         return (
             <Bootstrap>
                 <LeftSidebarSnippet route={route} leftNavData={leftNavData}/>
