@@ -14,6 +14,7 @@ import {DummyTopNavBar, TopNavData} from "../../data/top-nav-data";
 import {DummyLeftNavBar, LeftNavData} from "../../data/left-nav-data";
 import PFBrowserStorageManager from "@pfo/pf-react/src/artifacts/manager/pf-browser-storage-manager";
 import {Redirect} from "react-router";
+import {NavigationConfigData} from "../../data/navigation-config-data";
 
 interface Props {
     route?: any;
@@ -30,6 +31,31 @@ export default class PrivateLayout extends PFReactComponent<Props, any> {
         leftNavData: DummyLeftNavBar.get()
     }
 
+    private getTopNavData() {
+        let topNavData = this.props.topNavData;
+        let configData = NavigationConfigData.instance().getTopNavConfig(this.props.appConfig)
+        if (!configData) {
+            return topNavData
+        }
+
+        if (topNavData && configData.logoutAction) {
+            topNavData.logoutAction = configData.logoutAction
+        }
+
+        if (topNavData && configData.avatar) {
+            topNavData.avatar = configData.avatar
+        }
+
+        if (topNavData && configData.operatorNavItemList) {
+            topNavData.operatorNavItemList = configData.operatorNavItemList
+        }
+
+        if (topNavData && configData.quickActionItemList) {
+            topNavData.quickActionItemList = configData.quickActionItemList
+        }
+        return topNavData
+    }
+
     render() {
         if (!Boolean(PFBrowserStorageManager.getByKey("isAuthorized"))) {
             return (<Redirect to="/"/>);
@@ -44,7 +70,7 @@ export default class PrivateLayout extends PFReactComponent<Props, any> {
             <Bootstrap>
                 <LeftSidebarSnippet route={route} leftNavData={leftNavData}/>
                 <main className="main-wrapper">
-                    <TopBarSnippet route={route} topNavData={topNavData}/>
+                    <TopBarSnippet route={route} topNavData={this.getTopNavData()}/>
                     <section className="content-section">
                         <Container type={"fluid"}>
                             <PFLayoutRenderer route={route} appConfig={appConfig} component={component}/>
