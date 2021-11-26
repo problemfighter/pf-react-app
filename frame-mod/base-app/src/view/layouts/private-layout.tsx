@@ -40,7 +40,6 @@ export default class PrivateLayout extends PFReactComponent<Props, any> {
         if (storageNav && leftNavData) {
             leftNavData["leftNavItems"] = storageNav
         }
-        console.log(leftNavData)
         return (
             <Bootstrap>
                 <LeftSidebarSnippet route={route} leftNavData={leftNavData}/>

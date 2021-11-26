@@ -3,6 +3,7 @@ import {PFProps} from "@pfo/pf-react/src/artifacts/interface/pf-mixed-interface"
 import PFComponentState from "@pfo/pf-react/src/artifacts/component/pf-component-state";
 import PFReactComponent from "@pfo/pf-react/src/artifacts/component/pf-react-component";
 import {LeftNavData, LeftNavItem} from "../../data/left-nav-data";
+import {PFUtil} from "@pfo/pf-react/src/artifacts/utils/pf-util";
 
 interface Props extends PFProps {
     leftNavData?: LeftNavData
@@ -41,6 +42,12 @@ export default class LeftSidebarSnippet extends PFReactComponent<Props, State> {
         return ""
     }
 
+
+    goToOtherPage(event: any, url: string) {
+        event.preventDefault();
+        PFUtil.gotoUrl(this, url);
+    }
+
     getItem(item: LeftNavItem, index: any) {
         let randomId = "nest-" + (Math.random() + 1).toString(36).substring(7);
         let hrefAttrs = {}
@@ -55,7 +62,7 @@ export default class LeftSidebarSnippet extends PFReactComponent<Props, State> {
         }
         return (
             <li {...liAttrs} key={index}>
-                <a href={item.url} {...hrefAttrs}>
+                <a href="#" onClick={(event: any) => {this.goToOtherPage(event, item.url)}} {...hrefAttrs}>
                     {this.getNavIcon(item)}
                     <span className="text">{item.displayName}</span>
                 </a>
