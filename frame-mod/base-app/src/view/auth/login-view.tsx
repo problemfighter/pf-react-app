@@ -37,6 +37,7 @@ export default class LoginView extends PFComponent<Props, State> {
     }
 
     componentDidMount() {
+        this.showRedirectMessage();
     }
 
     componentDidUpdate(prevProps: Props) {
