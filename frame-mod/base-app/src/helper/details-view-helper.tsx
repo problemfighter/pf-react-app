@@ -7,7 +7,7 @@ import CommonUtil from "@pfo/pf-rui/spec/common/common-util";
 export interface DetailsViewDefinition {
     name: string
     displayName: string
-    customProcessor?: (definition: DetailsViewDefinition, index: any, detailsData: any) => DetailsViewDefinition
+    customProcessor?: (definition: DetailsViewDefinition, index: any, detailsData: any) => any
     colSpan?: string
     defaultValue?: any
     otherClasses?: string
@@ -41,7 +41,7 @@ export default class DetailsViewHelper extends PFComponent<Props, State> {
 
     private getValue(detailsData: { [key: string]: any }, index: any, definition: DetailsViewDefinition) {
         if (definition.customProcessor) {
-            definition = definition.customProcessor(definition, index, detailsData)
+            return definition.customProcessor(definition, index, detailsData)
         }
         if (detailsData && detailsData[definition.name] !== undefined) {
             return detailsData[definition.name]
