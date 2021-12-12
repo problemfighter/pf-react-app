@@ -15,6 +15,7 @@ interface Props extends PFProps {
     addButtonURL?: string;
     reloadButtonCallBack?: (event: any) => void;
     addOtherActions?: any
+    disableActionButton?: boolean
 }
 
 class State extends PFComponentState {
@@ -49,8 +50,8 @@ export default class ListViewTopActionHelper extends PFComponent<Props, State> {
     }
 
     private getAddButton() {
-        const {addButtonURL} = this.props
-        if (!addButtonURL) {
+        const {addButtonURL, disableActionButton} = this.props
+        if (!addButtonURL || disableActionButton) {
             return ""
         }
         return (
