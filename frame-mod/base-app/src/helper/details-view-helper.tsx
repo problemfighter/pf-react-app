@@ -53,8 +53,8 @@ export default class DetailsViewHelper extends PFComponent<Props, State> {
         let rowSpan = definition.colSpan ? definition.colSpan : "4"
         let html = (
             <div className={CommonUtil.getAndConcatClass(definition.otherClasses, "col-" + rowSpan)} key={index}>
-                <div className="form-floating h-auto">
-                    <div className="form-control fw-bold">{this.getValue(detailsData, index, definition)}</div>
+                <div className="form-floating">
+                    <div className="form-control fw-bold h-auto">{this.getValue(detailsData, index, definition)}</div>
                     <label className="fs-6">{definition.displayName}</label>
                 </div>
             </div>
